@@ -39,3 +39,17 @@
 
 # debug information files
 *.dwo
+NetworkClient/x64/Debug/vc143.idb
+NetworkClient/x64/Debug/NetworkClient.tlog/CL.command.1.tlog
+NetworkClient/x64/Debug/NetworkClient.tlog/CL.read.1.tlog
+NetworkClient/x64/Debug/NetworkClient.tlog/CL.write.1.tlog
+NetworkClient/x64/Debug/NetworkClient.tlog/link.command.1.tlog
+NetworkClient/x64/Debug/NetworkClient.tlog/link.read.1.tlog
+NetworkClient/x64/Debug/NetworkClient.tlog/NetworkClient.lastbuildstate
+.vs/NetworkClient/FileContentIndex/7fc99f3a-6c4c-49d6-a2a0-90a53b695de8.vsidx
+.vs/NetworkClient/v17/ipch/AutoPCH/17c32eb79cae753d/ENEMY.ipch
+.vs/NetworkClient/v17/ipch/AutoPCH/189593de1cd043ef/ANOTHERPLAYER.ipch
+.vs/NetworkClient/v17/ipch/AutoPCH/751aa500d83edd92/GAME.ipch
+.vs/NetworkClient/v17/ipch/AutoPCH/8ae9c0a7374e6158/PLAYER.ipch
+.vs/NetworkClient/v17/ipch/AutoPCH/8ce0a18ae32b057a/WALKTHROUGHSCENE.ipch
+.vs/

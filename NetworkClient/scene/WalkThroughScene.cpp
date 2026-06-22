@@ -26,12 +26,12 @@ namespace {
 
 void WalkThroughScene::debugCamera()
 {
-	Vector3 cameraPosition = m_camera->GetPosition();
+	Vector3 cameraPosition = m_camera->GetBEVPosition();
 
 	ImGui::Begin("debug Camera");
 
 	ImGui::SliderFloat3("Camera Position", &cameraPosition.x, -1000, 1000);
-	m_camera->SetPosition(cameraPosition);
+	m_camera->SetBEVPosition(cameraPosition);
 
 	ImGui::End();
 }
@@ -55,17 +55,6 @@ void WalkThroughScene::update(uint64_t deltatime)
 	case IDOL:
 		// プレイヤ
 		m_player->update(deltatime);
-		//// 入力情報の送信
-		//ClientSystem::GetInstance().GetUDPHandler()->SendInput(
-		//	ClientSystem::GetInstance().GetTCPManager()->GetMyID(),
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_W),
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_A), 
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_S), 
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_D), 
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_UP), 
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_DOWN), 
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_LEFT), 
-		//	CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_RIGHT));
 
 		if (CDirectInput::GetInstance().CheckKeyBufferTrigger(DIK_1)) {
 			state = SET_MESSAGE;
@@ -99,27 +88,9 @@ void WalkThroughScene::update(uint64_t deltatime)
 	if(NetworkStats::GetInstance().GetConnectState()==ConnectState::Disconnection) 
 		ClientSystem::GetInstance().GetTCPManager()->Connect();
 	ClientSystem::GetInstance().GetTCPManager()->CheckTcpEvents();
-	//ClientSystem::GetInstance().GetUDPHandler()->CheckUdpEvents();
 
 	// メッセージオブジェクト更新
 	SyncMessages();
-	//// 他プレイヤーのオブジェクト更新
-	//if(DataBase::GetInstance().GetClientListChanged())	SyncAnotherPlayers();
-	//for (auto& anotherPlayer : m_anotherPlayers) {
-	//	anotherPlayer->update(deltatime);
-	//}
-	//// ClientInfo定期送信
-	//static auto last = std::chrono::steady_clock::now();
-	//auto now = std::chrono::steady_clock::now();
-
-	//if (now - last >= 100ms) {
-	//	last = now;
-
-	//	ClientSystem::GetInstance().GetUDPHandler()->SendPlayerInfo(
-	//		ClientSystem::GetInstance().GetTCPManager()->GetMyID(),
-	//		m_player->getSRT().pos.x, m_player->getSRT().pos.y, m_player->getSRT().pos.z
-	//	);
-	//}
 
 	NetworkStats::GetInstance().Update(deltatime);
 
@@ -167,11 +138,6 @@ void WalkThroughScene::draw(uint64_t deltatime)
 			msgObj->m_message->draw(deltatime);
 		}
 	}
-
-	//// 他プレイヤー
-	//for (auto& anotherPlayer : m_anotherPlayers) {
-	//	anotherPlayer->draw(deltatime);
-	//}
 
 	// メッセージ設置ウィンドウ
 	if(isSetMessage)	m_messageWindow->draw(deltatime);

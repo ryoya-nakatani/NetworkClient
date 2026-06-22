@@ -34,6 +34,7 @@ public:
 	Vector3 GetPosition() const { return m_position; }
 	Vector3 GetLookat() const { return m_lookat; }
 
+	void SetBEVPosition(const Vector3& position) { m_BEVPosition = position; }
 	Vector3 GetBEVPosition() const { return m_BEVPosition; }
 };
 

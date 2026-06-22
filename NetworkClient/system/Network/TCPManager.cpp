@@ -7,8 +7,8 @@ auto clientSwap = [](const ClientInfo& client) {
 	ClientInfo networkOrder;
 	networkOrder.id = htonl(client.id);
 	networkOrder.IPaddress = client.IPaddress;
-	networkOrder.tcp_port = htonl(client.tcp_port);
-	networkOrder.udp_port = htonl(client.udp_port);
+	networkOrder.tcp_port = ntohs(client.tcp_port);
+	networkOrder.udp_port = ntohs(client.udp_port);
 	return networkOrder;
 	};
 auto messageSwap = [](const MessageData& message) {
